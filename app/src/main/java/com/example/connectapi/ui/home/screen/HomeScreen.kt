@@ -1,4 +1,5 @@
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -36,12 +37,19 @@ fun HomeStatus(
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     onDeleteClick: (Kontak) -> Unit = {},
+    onDetailClick: (Int) -> Unit
 ) {
 
     when (kontakUIState) {
         is KontakUIState.loading -> OnLoading(modifier = modifier.fillMaxSize())
         is KontakUIState.Success -> KontakLayout(
-            kontak = kontakUIState.kontak, modifier = modifier.fillMaxWidth()
+            kontak = kontakUIState.kontak, modifier = modifier.fillMaxWidth(),
+            onDetailClick = {
+                onDetailClick(it.id)
+            },
+            onDeleteClick = {
+                onDeleteClick(it)
+            }
         )
 
         is KontakUIState.Error -> OnError(retryAction, modifier = modifier.fillMaxSize())
@@ -85,7 +93,7 @@ fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier) {
 fun KontakLayout(
     kontak: List<Kontak>,
     modifier: Modifier = Modifier,
-    onDeleteClick: (Kontak) -> Unit,
+    onDetailClick: (Kontak) -> Unit,
     onDeleteClick: (Kontak) -> Unit = {}
     ) {
     LazyColumn(
@@ -95,12 +103,13 @@ fun KontakLayout(
     ) {
         items(kontak) { kontak ->
             KontakCard(kontak = kontak,
-                modifier = Modifier.
-                fillMaxWidth())
-                .clickable { onDetailClick(kontak)},
-            onDeleteClick = {
-                onDeleteClick(kontak)
-            }
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onDetailClick(kontak) },
+                onDeleteClick = {
+                    onDeleteClick(kontak)
+                }
+            )
         }
     }
 
