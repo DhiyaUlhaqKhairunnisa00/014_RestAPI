@@ -31,8 +31,10 @@ import com.example.connectapi.model.Kontak
 import com.example.connectapi.ui.home.viewmodel.KontakUIState
 
 @Composable
-fun HomeScreen(
-    kontakUIState: KontakUIState, retryAction: () -> Unit, modifier: Modifier = Modifier
+fun HomeStatus(
+    kontakUIState: KontakUIState,
+    retryAction: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
 
     when (kontakUIState) {
