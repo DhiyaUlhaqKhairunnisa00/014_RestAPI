@@ -122,7 +122,7 @@ fun KontakCard(
                 )
             }
             Text(
-                text = kontak.alamat,
+                text = kontak.email,
                 style = MaterialTheme.typography.titleMedium
             )
         }

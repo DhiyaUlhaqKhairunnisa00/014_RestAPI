@@ -8,6 +8,6 @@ interface KontakService {
     @Headers(
         "Accept: application/json"
     )
-    @GET("siswa.json")
+    @GET("/kontak")
     suspend fun getKontak():List<Kontak>
 }
