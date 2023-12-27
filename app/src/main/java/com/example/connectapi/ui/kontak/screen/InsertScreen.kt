@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.connectapi.ui.kontak.viewmodel.InsertUiEvent
+import com.example.connectapi.ui.kontak.viewmodel.InsertUiState
 import kotlin.math.sin
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -62,4 +63,14 @@ fun FormInputSiswa(
             modifier = Modifier.padding(12.dp)
         )
     }
+}
+
+@Composable
+fun EntryKontakBody(
+    insertUiState: InsertUiState,
+    onSiswaValueChange: (InsertUiEvent) -> Unit,
+    onSaveClick: () -> Unit,
+    modifier: Modifier = Modifier
+){
+
 }
