@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.connectapi.navigation.DestinasiNavigasi
 import com.example.connectapi.ui.kontak.viewmodel.InsertUiEvent
 import com.example.connectapi.ui.kontak.viewmodel.InsertUiState
 import kotlin.math.sin
@@ -91,4 +92,9 @@ fun EntryKontakBody(
                 Text(text = "Simpan")
         }
     }
+}
+
+object DestinasiEntry : DestinasiNavigasi{
+    override val route = "item_entry"
+    override val titleRes = "Entry Siswa"
 }
