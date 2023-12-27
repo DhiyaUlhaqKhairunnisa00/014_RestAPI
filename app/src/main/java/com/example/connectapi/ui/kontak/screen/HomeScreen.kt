@@ -29,7 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.connectapi.R
 import com.example.connectapi.model.Kontak
-import com.example.connectapi.ui.home.viewmodel.KontakUIState
+import com.example.connectapi.ui.kontak.viewmodel.KontakUIState
 
 @Composable
 fun HomeStatus(

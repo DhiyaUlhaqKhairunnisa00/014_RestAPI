@@ -22,7 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.connectapi.ui.home.viewmodel.HomeViewModel
+import com.example.connectapi.ui.kontak.viewmodel.HomeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,7 +40,7 @@ fun KontakApp(
                 .fillMaxSize()
                 .padding(it)
         ) {
-            HomeScreen(
+            HomeStatus(
                 kontakUIState = homeViewModel.kontakUIState,
                 retryAction = homeViewModel::getKontak
             )
