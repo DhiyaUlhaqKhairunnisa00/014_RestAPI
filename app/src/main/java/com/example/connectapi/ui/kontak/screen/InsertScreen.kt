@@ -13,9 +13,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.connectapi.PenyediaViewModel
 import com.example.connectapi.navigation.DestinasiNavigasi
 import com.example.connectapi.ui.kontak.viewmodel.InsertUiEvent
 import com.example.connectapi.ui.kontak.viewmodel.InsertUiState
+import com.example.connectapi.ui.kontak.viewmodel.InsertViewModel
 import kotlin.math.sin
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -98,3 +101,11 @@ object DestinasiEntry : DestinasiNavigasi{
     override val route = "item_entry"
     override val titleRes = "Entry Siswa"
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun EntryKontakScreen(
+    navigateBack: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: InsertViewModel = viewModel(factory = PenyediaViewModel.Factory),
+){}
