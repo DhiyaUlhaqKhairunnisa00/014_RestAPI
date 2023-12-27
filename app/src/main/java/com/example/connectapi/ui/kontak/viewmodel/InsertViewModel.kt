@@ -1,5 +1,6 @@
 package com.example.connectapi.ui.kontak.viewmodel
 
+import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -31,6 +32,11 @@ data class InsertUiState(
     val insertUiState: InsertUiEvent = InsertUiEvent(),
 )
 
-
+data class InsertUiEvent(
+    val id: Int = 0,
+    val nama: String = "",
+    val email: String = "",
+    val telepon: String = "",
+)
 
 
