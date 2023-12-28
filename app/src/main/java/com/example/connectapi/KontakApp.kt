@@ -1,8 +1,5 @@
 package com.example.connectapi
 
-import HomeScreen
-import android.graphics.drawable.Icon
-import android.icu.text.CaseMap.Title
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -22,7 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.connectapi.ui.kontak.viewmodel.HomeViewModel
+import com.example.connectapi.navigation.PengelolaHalaman
+import com.example.connectapi.ui.home.ViewModel.HomeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,12 +38,7 @@ fun KontakApp(
                 .fillMaxSize()
                 .padding(it)
         ) {
-            HomeStatus(
-                kontakUIState = homeViewModel.kontakUIState,
-                retryAction = homeViewModel::getKontak
-            )
-
-
+            PengelolaHalaman()
         }
     }
 }

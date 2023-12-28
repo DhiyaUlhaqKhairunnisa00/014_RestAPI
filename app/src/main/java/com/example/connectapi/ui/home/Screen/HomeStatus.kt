@@ -1,3 +1,5 @@
+package com.example.connectapi.ui.home.Screen
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -29,27 +31,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.connectapi.R
 import com.example.connectapi.model.Kontak
-import com.example.connectapi.ui.kontak.viewmodel.KontakUIState
+import com.example.connectapi.ui.home.viewmodel.KontakUIState
 
 @Composable
 fun HomeStatus(
     kontakUIState: KontakUIState,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
-    onDeleteClick: (Kontak) -> Unit = {},
+    onDeleteClick: (Kontak) -> Unit,
     onDetailClick: (Int) -> Unit
 ) {
 
     when (kontakUIState) {
-        is KontakUIState.loading -> OnLoading(modifier = modifier.fillMaxSize())
+        is KontakUIState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
         is KontakUIState.Success -> KontakLayout(
             kontak = kontakUIState.kontak, modifier = modifier.fillMaxWidth(),
-            onDetailClick = {
-                onDetailClick(it.id)
-            },
-            onDeleteClick = {
-                onDeleteClick(it)
-            }
+            onDetailClick = { onDetailClick(it.id) },
+            onDeleteClick = { onDeleteClick(it) }
         )
 
         is KontakUIState.Error -> OnError(retryAction, modifier = modifier.fillMaxSize())
@@ -57,9 +55,7 @@ fun HomeStatus(
 
 }
 
-/**
- * The home screen displaying the loading message.
- */
+
 @Composable
 fun OnLoading(modifier: Modifier = Modifier) {
     Image(
@@ -69,9 +65,6 @@ fun OnLoading(modifier: Modifier = Modifier) {
     )
 }
 
-/**
- * The home screen displaying error message with re-attempt button.
- */
 @Composable
 fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier) {
     Column(
@@ -89,26 +82,24 @@ fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier) {
     }
 }
 
+
 @Composable
 fun KontakLayout(
     kontak: List<Kontak>,
     modifier: Modifier = Modifier,
-    onDetailClick: (Kontak) -> Unit,
-    onDeleteClick: (Kontak) -> Unit = {}
-    ) {
+    onDeleteClick: (Kontak) -> Unit = {},
+    onDetailClick: (Kontak) -> Unit = {}
+) {
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(kontak) { kontak ->
-            KontakCard(kontak = kontak,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { onDetailClick(kontak) },
-                onDeleteClick = {
-                    onDeleteClick(kontak)
-                }
+            KontakCard(kontak = kontak, modifier = Modifier
+                .fillMaxWidth()
+                .clickable { onDeleteClick(kontak) },
+                onDeleteClick = { onDeleteClick(kontak) }
             )
         }
     }
@@ -132,7 +123,6 @@ fun KontakCard(
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
                     text = kontak.nama,
@@ -147,17 +137,18 @@ fun KontakCard(
                     text = kontak.telpon,
                     style = MaterialTheme.typography.titleMedium
                 )
+                Spacer(Modifier.weight(1f))
+                IconButton(onClick = { onDeleteClick(kontak) }) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = null,
+                    )
+                }
             }
             Text(
                 text = kontak.email,
                 style = MaterialTheme.typography.titleMedium
             )
-            Spacer(Modifier.weight(1f))
-            IconButton(onClick = { onDeleteClick(kontak)}) {
-                Icon(imageVector = Icons.Default.Delete,
-                    contentDescription = null )
-
-            }
         }
 
     }
